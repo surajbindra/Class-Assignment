@@ -1,1 +1,124 @@
+#include<bits/stdc++.h>
+using namespace std;
 
+class Employee {
+    private:
+        int id;
+        string name;
+        string department;
+        double baseSalary;
+
+    public:
+        Employee() {
+            id = 0;
+            name = "Unknown";
+            department = "Not Assigned";
+            baseSalary = 0.0;
+        }
+        Employee(int id, string name) {
+            this->id = id;
+            this->name = name;
+            department = "Not Assigned";
+            baseSalary = 0.0;
+        }
+        Employee(int id, string name, double baseSalary) {
+            this->id = id;
+            this->name = name;
+            this->department = "Not Assigned";
+            this->baseSalary = baseSalary;
+        }
+        Employee(int id, string name, string department, double baseSalary) {
+            this->id = id;
+            this->name = name;
+            this->department = department;
+            this->baseSalary = baseSalary;
+        }
+
+        double calculatePay() {
+            return baseSalary;
+        }
+        double calculatePay(double bonus) {
+            return baseSalary + bonus;
+        }
+        double calculatePay(int overtimeHours, double hourlyRate) {
+            return baseSalary + (overtimeHours * hourlyRate);
+        }
+        double calculatePay(double bonus, double taxPercentage) {
+            double totalPay = baseSalary + bonus;
+            double tax = totalPay * (taxPercentage / 100);
+            return totalPay - tax;
+        }
+
+    
+        void updateProfile(string department) {
+            this->department = department;
+        }
+        void updateProfile(double baseSalary) {
+            this->baseSalary = baseSalary;
+        }
+        void updateProfile(string department, double baseSalary) {
+            this->department = department;
+            this->baseSalary = baseSalary;
+        }   
+
+    
+        void display() {
+            cout << "ID : " << id << endl;
+            cout << "Name : " << name << endl;
+            cout << "Department : " << department << endl;
+            cout << "Base Salary : " << fixed << setprecision(2) << baseSalary << endl;
+        }
+};
+
+int main() {
+    //constructor overloading ...
+    Employee emp1;
+    cout << "Employee 1";
+    emp1.display();
+
+    Employee emp2(101, "Rahul");
+    cout << "\nEmployee 2 (ID and Name):\n";
+    emp2.display();
+
+    Employee emp4(103, "Aman", 500000);
+    cout << "\nEmployee 4 (ID, Name and Salary):\n";
+    emp4.display();
+
+    Employee emp3(102, "Suraj", "IT", 600000);
+    cout << "\nEmployee 3 Full Profile :\n";
+    emp3.display();
+
+    //function overloading...
+
+    cout << "Base Salary Only: "<< emp3.calculatePay() << endl;
+
+    cout << "Base Salary + Bonus: "<< emp3.calculatePay(50000.0) << endl;
+
+    cout << "Base Salary + Overtime: "<< emp3.calculatePay(20, 1000.0) << endl;
+
+    cout << "Base Salary + Bonus - Tax: "<< emp3.calculatePay(50000.0, 10.0) << endl;
+
+    //profile update...
+
+    Employee emp5(104, "Vikas", "HR", 400000);
+    
+    cout << "Original Profile:\n";
+    emp5.display();
+
+    // Update department only
+    emp5.updateProfile("Finance");
+    cout << "\nAfter updating Department:\n";
+    emp5.display();
+
+    // Update salary only
+    emp5.updateProfile(450000.0);
+    cout << "\nAfter updating Salary:\n";
+    emp5.display();
+
+    // Update department and salary
+    emp5.updateProfile("Management", 550000.0);
+    cout << "\nAfter updating Department and Salary:\n";
+    emp5.display();
+
+    return 0;
+}
