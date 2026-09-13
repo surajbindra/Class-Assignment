@@ -1,3 +1,12 @@
+------------------ERROR EXPLAINATION -----------------
+----->deleteNodeAtEnd code section has 2 cases of failure: 
+         a) when there is only node there it will segmentation error.
+         b) when the single node is empty or null value.
+----->deleteNodeAtStart code section has 1 case of failue:
+         a) when node is empty
+
+------------------ CORRECTED CODE ---------------------
+
 #include <iostream>
 using namespace std;
 
